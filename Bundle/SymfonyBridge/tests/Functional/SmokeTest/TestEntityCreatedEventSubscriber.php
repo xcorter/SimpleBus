@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest;
 
 use SimpleBus\Message\Bus\MessageBus;
@@ -14,7 +16,7 @@ class TestEntityCreatedEventSubscriber
         $this->commandBus = $commandBus;
     }
 
-    public function notify()
+    public function notify(): void
     {
         $this->eventHandled = true;
 

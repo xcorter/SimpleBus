@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\Handler;
 
 use PHPUnit\Framework\TestCase;
@@ -12,7 +14,7 @@ class DelegatesToMessageHandlerMiddlewareTest extends TestCase
     /**
      * @test
      */
-    public function it_resolves_the_message_handler_and_lets_it_handle_the_message()
+    public function it_resolves_the_message_handler_and_lets_it_handle_the_message(): void
     {
         $message = $this->dummyMessage();
         $messageHandler = new CallableSpy();

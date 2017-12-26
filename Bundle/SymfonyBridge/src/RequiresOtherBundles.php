@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -7,7 +9,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 trait RequiresOtherBundles
 {
-    protected function checkRequirements(array $requiredBundles, ContainerBuilder $container)
+    protected function checkRequirements(array $requiredBundles, ContainerBuilder $container): void
     {
         if (!($this instanceof Bundle)) {
             throw new \LogicException('You can only use this trait with Bundle instances');

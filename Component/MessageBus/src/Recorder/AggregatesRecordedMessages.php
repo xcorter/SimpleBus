@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Recorder;
 
 class AggregatesRecordedMessages implements ContainsRecordedMessages
@@ -37,14 +39,14 @@ class AggregatesRecordedMessages implements ContainsRecordedMessages
      *
      * {@inheritdoc}
      */
-    public function eraseMessages()
+    public function eraseMessages(): void
     {
         foreach ($this->messageRecorders as $messageRecorder) {
             $messageRecorder->eraseMessages();
         }
     }
 
-    private function addMessageRecorder(ContainsRecordedMessages $messageRecorder)
+    private function addMessageRecorder(ContainsRecordedMessages $messageRecorder): void
     {
         $this->messageRecorders[] = $messageRecorder;
     }

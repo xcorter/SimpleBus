@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\JMSSerializerBridge\Tests\Integration;
 
 use JMS\Serializer\SerializerBuilder;
@@ -13,7 +15,7 @@ class JMSSerializerObjectSerializerTest extends TestCase
     /**
      * @test
      */
-    public function it_serializes_and_deserializes_messages()
+    public function it_serializes_and_deserializes_messages(): void
     {
         $format = 'json';
         $jmsSerializer = SerializerBuilder::create()

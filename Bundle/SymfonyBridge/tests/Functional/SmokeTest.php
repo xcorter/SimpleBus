@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\Tests\Functional;
 
 use Doctrine\ORM\EntityManager;
@@ -21,7 +23,7 @@ class SmokeTest extends KernelTestCase
         return TestKernel::class;
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
 
@@ -32,7 +34,7 @@ class SmokeTest extends KernelTestCase
     /**
      * @test
      */
-    public function it_handles_a_command_then_dispatches_events_for_all_modified_entities()
+    public function it_handles_a_command_then_dispatches_events_for_all_modified_entities(): void
     {
         self::bootKernel(['environment' => 'config1']);
         $container = self::$kernel->getContainer();
@@ -63,7 +65,7 @@ class SmokeTest extends KernelTestCase
     /**
      * @test
      */
-    public function it_can_auto_register_event_subscribers_using_invoke()
+    public function it_can_auto_register_event_subscribers_using_invoke(): void
     {
         self::bootKernel(['environment' => 'config2']);
         $container = self::$kernel->getContainer();
@@ -81,7 +83,7 @@ class SmokeTest extends KernelTestCase
     /**
      * @test
      */
-    public function it_can_auto_register_event_subscribers_using_public_method()
+    public function it_can_auto_register_event_subscribers_using_public_method(): void
     {
         self::bootKernel(['environment' => 'config2']);
         $container = self::$kernel->getContainer();
@@ -101,7 +103,7 @@ class SmokeTest extends KernelTestCase
     /**
      * @test
      */
-    public function it_can_auto_register_command_handlers_using_invoke()
+    public function it_can_auto_register_command_handlers_using_invoke(): void
     {
         self::bootKernel(['environment' => 'config2']);
         $container = self::$kernel->getContainer();
@@ -119,7 +121,7 @@ class SmokeTest extends KernelTestCase
     /**
      * @test
      */
-    public function it_can_auto_register_command_handlers_using_public_method()
+    public function it_can_auto_register_command_handlers_using_public_method(): void
     {
         self::bootKernel(['environment' => 'config2']);
         $container = self::$kernel->getContainer();
@@ -142,12 +144,12 @@ class SmokeTest extends KernelTestCase
      * @expectedException        \LogicException
      * @expectedExceptionMessage In order to use bundle "DoctrineOrmBridgeBundle" you need to require "symfony/proxy-manager-bridge" package.
      */
-    public function fails_because_of_mising_dependency()
+    public function fails_because_of_mising_dependency(): void
     {
         self::bootKernel(['environment' => 'config2']);
     }
 
-    private function createSchema(ContainerInterface $container)
+    private function createSchema(ContainerInterface $container): void
     {
         $entityManager = $container->get('doctrine.orm.entity_manager');
         /** @var EntityManager $entityManager */

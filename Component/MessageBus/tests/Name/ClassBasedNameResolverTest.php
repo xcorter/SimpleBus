@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\Name;
 
 use PHPUnit\Framework\TestCase;
@@ -11,7 +13,7 @@ class ClassBasedNameResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_returns_the_full_class_name_as_the_unique_name_of_a_message()
+    public function it_returns_the_full_class_name_as_the_unique_name_of_a_message(): void
     {
         $resolver = new ClassBasedNameResolver();
         $message = new DummyMessage();

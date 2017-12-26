@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Name;
 
 use SimpleBus\Message\Name\Exception\CouldNotResolveMessageName;

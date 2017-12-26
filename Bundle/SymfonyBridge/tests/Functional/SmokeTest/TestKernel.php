@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
@@ -32,7 +34,7 @@ class TestKernel extends Kernel
         ];
     }
 
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         $loader->load(sprintf('%s/%s.yml', __DIR__, $this->environment));
     }

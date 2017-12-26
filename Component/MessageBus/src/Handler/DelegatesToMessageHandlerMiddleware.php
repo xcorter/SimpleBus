@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Handler;
 
 use SimpleBus\Message\Bus\Middleware\MessageBusMiddleware;
@@ -22,7 +24,7 @@ class DelegatesToMessageHandlerMiddleware implements MessageBusMiddleware
      *
      * {@inheritdoc}
      */
-    public function handle($message, callable $next)
+    public function handle($message, callable $next): void
     {
         $handler = $this->messageHandlerResolver->resolve($message);
         call_user_func($handler, $message);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\Bus\Fixtures;
 
 use SimpleBus\Message\Bus\Middleware\MessageBusMiddleware;
@@ -16,7 +18,7 @@ class StubMessageBusMiddleware implements MessageBusMiddleware
         $this->handler = $handler;
     }
 
-    public function handle($message, callable $next)
+    public function handle($message, callable $next): void
     {
         call_user_func($this->handler, $message);
 

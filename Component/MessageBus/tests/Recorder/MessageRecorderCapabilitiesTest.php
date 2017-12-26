@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\Recorder;
 
 use PHPUnit\Framework\TestCase;
@@ -10,7 +12,7 @@ class MessageRecorderCapabilitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_records_messages()
+    public function it_records_messages(): void
     {
         $messageRecorder = new PrivateMessageRecorderCapabilitiesStub();
         $message1 = $this->dummyMessage();
@@ -25,7 +27,7 @@ class MessageRecorderCapabilitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_erases_messages()
+    public function it_erases_messages(): void
     {
         $messageRecorder = new PrivateMessageRecorderCapabilitiesStub();
         $messageRecorder->publicRecord($this->dummyMessage());

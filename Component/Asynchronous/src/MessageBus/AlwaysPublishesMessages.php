@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Asynchronous\MessageBus;
 
 use SimpleBus\Asynchronous\Publisher\Publisher;
@@ -22,7 +24,7 @@ class AlwaysPublishesMessages implements MessageBusMiddleware
      *
      * {@inheritdoc}
      */
-    public function handle($message, callable $next)
+    public function handle($message, callable $next): void
     {
         $this->publisher->publish($message);
 

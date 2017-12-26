@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\Name;
 
 use PHPUnit\Framework\TestCase;
@@ -12,7 +14,7 @@ class NamedMessageNameResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_returns_the_name_of_the_named_message()
+    public function it_returns_the_name_of_the_named_message(): void
     {
         $messageName = 'message_name';
         StubNamedMessage::$name = $messageName;
@@ -26,7 +28,7 @@ class NamedMessageNameResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_when_the_name_is_not_a_string()
+    public function it_fails_when_the_name_is_not_a_string(): void
     {
         $notAString = new stdClass();
         StubNamedMessage::$name = $notAString;
@@ -41,7 +43,7 @@ class NamedMessageNameResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_when_the_name_is_an_empty_string()
+    public function it_fails_when_the_name_is_an_empty_string(): void
     {
         $emptyString = '';
         StubNamedMessage::$name = $emptyString;
@@ -56,7 +58,7 @@ class NamedMessageNameResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_when_the_message_is_not_a_named_message()
+    public function it_fails_when_the_message_is_not_a_named_message(): void
     {
         $resolver = new NamedMessageNameResolver();
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge\Tests;
 
 use PHPUnit\Framework\TestCase;
@@ -10,7 +12,7 @@ class RabbitMQPublisherTest extends TestCase
     /**
      * @test
      */
-    public function it_serializes_the_message_and_publishes_it_using_the_resolved_router_key()
+    public function it_serializes_the_message_and_publishes_it_using_the_resolved_router_key(): void
     {
         $message = $this->dummyMessage();
         $routingKey = 'the-routing-key';

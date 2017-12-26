@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge\EventListener;
 
 use Psr\Log\LoggerInterface;
@@ -39,7 +41,7 @@ class LogErrorWhenMessageConsumptionFailed implements EventSubscriberInterface
     /**
      * Log the failed message and the related exception.
      */
-    public function messageConsumptionFailed(MessageConsumptionFailed $event)
+    public function messageConsumptionFailed(MessageConsumptionFailed $event): void
     {
         $this->logger->log(
             $this->logLevel,

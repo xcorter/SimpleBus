@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Recorder;
 
 use Exception;
@@ -24,7 +26,7 @@ class HandlesRecordedMessagesMiddleware implements MessageBusMiddleware
         $this->messageBus = $messageBus;
     }
 
-    public function handle($message, callable $next)
+    public function handle($message, callable $next): void
     {
         try {
             $next($message);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\DoctrineORMBridge\MessageBus;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -29,14 +31,14 @@ class WrapsMessageHandlingInTransaction implements MessageBusMiddleware
         $this->entityManagerName = $entityManagerName;
     }
 
-    public function handle($message, callable $next)
+    public function handle($message, callable $next): void
     {
         $entityManager = $this->managerRegistry->getManager($this->entityManagerName);
         /* @var $entityManager EntityManager */
 
         try {
             $entityManager->transactional(
-                function () use ($message, $next) {
+                function () use ($message, $next): void {
                     $next($message);
                 }
             );

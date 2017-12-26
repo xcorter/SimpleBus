@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Reference;
@@ -27,7 +29,7 @@ class EventBusExtension extends ConfigurableExtension
         return new EventBusConfiguration($this->getAlias());
     }
 
-    protected function loadInternal(array $mergedConfig, ContainerBuilder $container)
+    protected function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 

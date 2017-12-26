@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Serialization\Tests\Message\Envelope;
 
 use PHPUnit\Framework\TestCase;
@@ -11,7 +13,7 @@ class DefaultEnvelopeFactoryTest extends TestCase
     /**
      * @test
      */
-    public function it_creates_a_default_message_envelope()
+    public function it_creates_a_default_message_envelope(): void
     {
         $factory = new DefaultEnvelopeFactory();
 
@@ -25,7 +27,7 @@ class DefaultEnvelopeFactoryTest extends TestCase
     /**
      * @test
      */
-    public function it_returns_the_class_of_the_default_message_envelope()
+    public function it_returns_the_class_of_the_default_message_envelope(): void
     {
         $factory = new DefaultEnvelopeFactory();
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\DoctrineORMBridge\EventListener;
 
 use Doctrine\Common\EventSubscriber;
@@ -21,7 +23,7 @@ class CollectsEventsFromEntities implements EventSubscriber, ContainsRecordedMes
         ];
     }
 
-    public function preFlush(PreFlushEventArgs $eventArgs)
+    public function preFlush(PreFlushEventArgs $eventArgs): void
     {
         $em = $eventArgs->getEntityManager();
         $uow = $em->getUnitOfWork();
@@ -41,7 +43,7 @@ class CollectsEventsFromEntities implements EventSubscriber, ContainsRecordedMes
      *
      * @param PostFlushEventArgs $eventArgs
      */
-    public function postFlush(PostFlushEventArgs $eventArgs)
+    public function postFlush(PostFlushEventArgs $eventArgs): void
     {
         $em = $eventArgs->getEntityManager();
         $uow = $em->getUnitOfWork();
@@ -57,12 +59,12 @@ class CollectsEventsFromEntities implements EventSubscriber, ContainsRecordedMes
         return $this->collectedEvents;
     }
 
-    public function eraseMessages()
+    public function eraseMessages(): void
     {
         $this->collectedEvents = [];
     }
 
-    private function collectEventsFromEntity($entity)
+    private function collectEventsFromEntity($entity): void
     {
         if ($entity instanceof ContainsRecordedMessages
             && (!$entity instanceof Proxy

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Bus\Middleware;
 
 use Exception;
@@ -22,7 +24,7 @@ class FinishesHandlingMessageBeforeHandlingNext implements MessageBusMiddleware
      *
      * {@inheritdoc}
      */
-    public function handle($message, callable $next)
+    public function handle($message, callable $next): void
     {
         $this->queue[] = $message;
 

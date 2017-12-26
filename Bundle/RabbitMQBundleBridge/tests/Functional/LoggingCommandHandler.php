@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge\Tests\Functional;
 
 use Psr\Log\LoggerInterface;
@@ -16,7 +18,7 @@ class LoggingCommandHandler
         $this->logger = $logger;
     }
 
-    public function handle($message)
+    public function handle($message): void
     {
         $this->logger->debug('Handling message', ['type' => get_class($message)]);
     }

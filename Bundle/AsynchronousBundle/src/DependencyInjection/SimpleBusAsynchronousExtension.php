@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\AsynchronousBundle\DependencyInjection;
 
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -30,7 +32,7 @@ class SimpleBusAsynchronousExtension extends ConfigurableExtension
         return new Configuration($this->alias);
     }
 
-    protected function loadInternal(array $mergedConfig, ContainerBuilder $container)
+    protected function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
@@ -49,7 +51,7 @@ class SimpleBusAsynchronousExtension extends ConfigurableExtension
         }
     }
 
-    private function requireBundle($bundleName, ContainerBuilder $container)
+    private function requireBundle($bundleName, ContainerBuilder $container): void
     {
         $enabledBundles = $container->getParameter('kernel.bundles');
         if (!isset($enabledBundles[$bundleName])) {
@@ -57,7 +59,7 @@ class SimpleBusAsynchronousExtension extends ConfigurableExtension
         }
     }
 
-    private function loadAsynchronousCommandBus(array $config, ContainerBuilder $container, LoaderInterface $loader)
+    private function loadAsynchronousCommandBus(array $config, ContainerBuilder $container, LoaderInterface $loader): void
     {
         $this->requireBundle('SimpleBusCommandBusBundle', $container);
         $loader->load('asynchronous_commands.yml');
@@ -77,7 +79,7 @@ class SimpleBusAsynchronousExtension extends ConfigurableExtension
         }
     }
 
-    private function loadAsynchronousEventBus(array $config, ContainerBuilder $container, LoaderInterface $loader)
+    private function loadAsynchronousEventBus(array $config, ContainerBuilder $container, LoaderInterface $loader): void
     {
         $this->requireBundle('SimpleBusEventBusBundle', $container);
         $loader->load('asynchronous_events.yml');

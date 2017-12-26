@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -8,7 +10,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class AdditionalPropertiesResolverPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $delegatingResolverId = 'simple_bus.rabbit_mq_bundle_bridge.delegating_additional_properties_resolver';
         if (!($container->has($delegatingResolverId))) {

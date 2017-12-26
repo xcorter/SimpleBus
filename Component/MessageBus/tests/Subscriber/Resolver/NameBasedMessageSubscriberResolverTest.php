@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\Subscriber\Resolver;
 
 use PHPUnit\Framework\TestCase;
@@ -12,7 +14,7 @@ class NameBasedMessageSubscriberResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_returns_message_subscribers_from_the_handler_collection_by_its_name()
+    public function it_returns_message_subscribers_from_the_handler_collection_by_its_name(): void
     {
         $message = $this->dummyMessage();
         $messageName = 'message_name';

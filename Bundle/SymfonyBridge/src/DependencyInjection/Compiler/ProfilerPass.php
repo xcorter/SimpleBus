@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -12,7 +14,7 @@ class ProfilerPass implements CompilerPassInterface
 {
     const MESSAGE_BUS_TAG = 'message_bus';
 
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         foreach ($container->findTaggedServiceIds(self::MESSAGE_BUS_TAG) as $serviceId => $tags) {
             foreach ($tags as $tagAttributes) {

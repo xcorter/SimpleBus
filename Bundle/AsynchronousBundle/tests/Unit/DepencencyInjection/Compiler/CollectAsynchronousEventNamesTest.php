@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\AsynchronousBundle\Tests\Unit\DependencyInjection\Compiler;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractCompilerPassTestCase;
@@ -9,7 +11,7 @@ use Symfony\Component\DependencyInjection\Definition;
 
 class CollectAsynchronousEventNamesTest extends AbstractCompilerPassTestCase
 {
-    protected function registerCompilerPass(ContainerBuilder $container)
+    protected function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new CollectAsynchronousEventNames());
     }
@@ -17,7 +19,7 @@ class CollectAsynchronousEventNamesTest extends AbstractCompilerPassTestCase
     /**
      * @test
      */
-    public function if_compiler_pass_collects_event_names()
+    public function if_compiler_pass_collects_event_names(): void
     {
         $serviceId = 'simple_bus.asynchronous.publishes_predefined_messages_middleware';
         $middleware = new Definition();

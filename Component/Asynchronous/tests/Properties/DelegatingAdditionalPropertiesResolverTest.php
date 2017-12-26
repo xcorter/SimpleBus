@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Asynchronous\Tests\Properties;
 
 use PHPUnit\Framework\TestCase;
@@ -11,7 +13,7 @@ class DelegatingAdditionalPropertiesResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_should_merge_multiple_resolvers()
+    public function it_should_merge_multiple_resolvers(): void
     {
         $message = $this->messageDummy();
 

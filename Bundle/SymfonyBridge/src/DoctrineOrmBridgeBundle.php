@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge;
 
 use SimpleBus\SymfonyBridge\DependencyInjection\Compiler\AddMiddlewareTags;
@@ -24,7 +26,7 @@ class DoctrineOrmBridgeBundle extends Bundle
         return new DoctrineOrmBridgeExtension($this->configurationAlias);
     }
 
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         $this->checkRequirements(['SimpleBusCommandBusBundle', 'SimpleBusEventBusBundle'], $container);
 
@@ -38,7 +40,7 @@ class DoctrineOrmBridgeBundle extends Bundle
         CompilerPassUtil::prependBeforeOptimizationPass($container, $compilerPass);
     }
 
-    private function checkProxyManagerBridgeIsPresent()
+    private function checkProxyManagerBridgeIsPresent(): void
     {
         if (!class_exists('Symfony\Bridge\ProxyManager\LazyProxy\Instantiator\RuntimeInstantiator')) {
             throw new \LogicException(

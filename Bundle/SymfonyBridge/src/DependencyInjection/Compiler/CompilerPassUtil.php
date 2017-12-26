@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -10,7 +12,7 @@ class CompilerPassUtil
     public static function prependBeforeOptimizationPass(
         ContainerBuilder $container,
         CompilerPassInterface $compilerPass
-    ) {
+    ): void {
         $compilerPassConfig = $container->getCompilerPassConfig();
         $beforeOptimizationPasses = $compilerPassConfig->getBeforeOptimizationPasses();
         array_unshift($beforeOptimizationPasses, $compilerPass);

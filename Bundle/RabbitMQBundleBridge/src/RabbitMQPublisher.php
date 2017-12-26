@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge;
 
 use OldSound\RabbitMqBundle\RabbitMq\Producer;
@@ -53,7 +55,7 @@ class RabbitMQPublisher implements Publisher
      *
      * {@inheritdoc}
      */
-    public function publish($message)
+    public function publish($message): void
     {
         $serializedMessage = $this->serializer->wrapAndSerialize($message);
         $routingKey = $this->routingKeyResolver->resolveRoutingKeyFor($message);

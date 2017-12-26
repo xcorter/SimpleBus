@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -31,7 +33,7 @@ class RegisterSubscribers implements CompilerPassInterface
      *
      * @param ContainerBuilder $container
      */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (!$container->has($this->serviceId)) {
             return;
@@ -45,7 +47,7 @@ class RegisterSubscribers implements CompilerPassInterface
             $container,
             $this->tag,
             $this->keyAttribute,
-            function ($key, $serviceId, array $tagAttributes) use (&$handlers) {
+            function ($key, $serviceId, array $tagAttributes) use (&$handlers): void {
                 if (isset($tagAttributes['method'])) {
                     // Symfony 3.3 supports services by classname. This interferes with `is_callable`
                     // in `ServiceLocatorAwareCallableResolver`

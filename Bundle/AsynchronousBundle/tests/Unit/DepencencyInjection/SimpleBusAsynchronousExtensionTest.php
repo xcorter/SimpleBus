@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\AsynchronousBundle\Tests\Unit\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
@@ -22,7 +24,7 @@ class SimpleBusAsynchronousExtensionTest extends AbstractExtensionTestCase
     /**
      * @test
      */
-    public function it_uses_strategy_always_by_default()
+    public function it_uses_strategy_always_by_default(): void
     {
         $this->container->setParameter('kernel.bundles', ['SimpleBusCommandBusBundle' => true, 'SimpleBusEventBusBundle' => true]);
         $this->load();
@@ -33,7 +35,7 @@ class SimpleBusAsynchronousExtensionTest extends AbstractExtensionTestCase
     /**
      * @test
      */
-    public function it_uses_strategy_predefined_when_configured()
+    public function it_uses_strategy_predefined_when_configured(): void
     {
         $this->container->setParameter('kernel.bundles', ['SimpleBusCommandBusBundle' => true, 'SimpleBusEventBusBundle' => true]);
         $this->load(['events' => ['strategy' => 'predefined']]);
@@ -46,7 +48,7 @@ class SimpleBusAsynchronousExtensionTest extends AbstractExtensionTestCase
      * @expectedException \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      * @expectedExceptionMessageRegExp ".*custom_strategy.*"
      */
-    public function it_uses_custom_strategy_when_configured()
+    public function it_uses_custom_strategy_when_configured(): void
     {
         $this->container->setParameter('kernel.bundles', ['SimpleBusCommandBusBundle' => true, 'SimpleBusEventBusBundle' => true]);
         $this->load(['events' => ['strategy' => ['strategy_service_id' => 'custom_strategy']]]);
@@ -57,7 +59,7 @@ class SimpleBusAsynchronousExtensionTest extends AbstractExtensionTestCase
      * @expectedException \LogicException
      * @expectedExceptionMessageRegExp ".*SimpleBusCommandBusBundle.*"
      */
-    public function it_throws_exception_if_command_bus_bundle_is_missing()
+    public function it_throws_exception_if_command_bus_bundle_is_missing(): void
     {
         $this->container->setParameter('kernel.bundles', ['SimpleBusEventBusBundle' => true]);
         $this->load(['events' => ['strategy' => 'predefined']]);
@@ -68,7 +70,7 @@ class SimpleBusAsynchronousExtensionTest extends AbstractExtensionTestCase
      * @expectedException \LogicException
      * @expectedExceptionMessageRegExp ".*SimpleBusEventBusBundle.*"
      */
-    public function it_throws_exception_if_event_bus_bundle_is_missing()
+    public function it_throws_exception_if_event_bus_bundle_is_missing(): void
     {
         $this->container->setParameter('kernel.bundles', ['SimpleBusCommandBusBundle' => true]);
         $this->load(['events' => ['strategy' => 'predefined']]);

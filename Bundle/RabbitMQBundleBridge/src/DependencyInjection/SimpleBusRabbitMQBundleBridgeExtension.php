@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
@@ -17,7 +19,7 @@ class SimpleBusRabbitMQBundleBridgeExtension extends ConfigurableExtension imple
         $this->alias = $alias;
     }
 
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $this->requireBundle('SimpleBusAsynchronousBundle', $container);
         $this->requireBundle('OldSoundRabbitMqBundle', $container);
@@ -54,7 +56,7 @@ class SimpleBusRabbitMQBundleBridgeExtension extends ConfigurableExtension imple
         return new Configuration($this->alias);
     }
 
-    protected function loadInternal(array $mergedConfig, ContainerBuilder $container)
+    protected function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
@@ -103,7 +105,7 @@ class SimpleBusRabbitMQBundleBridgeExtension extends ConfigurableExtension imple
         $loader->load('properties.yml');
     }
 
-    private function requireBundle($bundleName, ContainerBuilder $container)
+    private function requireBundle($bundleName, ContainerBuilder $container): void
     {
         $enabledBundles = $container->getParameter('kernel.bundles');
         if (!isset($enabledBundles[$bundleName])) {

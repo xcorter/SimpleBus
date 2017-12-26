@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\JMSSerializerBridge;
 
 use JMS\Serializer\DeserializationContext;

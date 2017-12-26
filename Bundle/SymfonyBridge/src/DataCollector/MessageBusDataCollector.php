@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\DataCollector;
 
 use SimpleBus\Message\Name\NamedMessage;
@@ -21,7 +23,7 @@ class MessageBusDataCollector extends DataCollector
         $this->busRegistry = $busRegistry;
     }
 
-    public function collect(Request $request, Response $response, \Exception $exception = null)
+    public function collect(Request $request, Response $response, \Exception $exception = null): void
     {
         $messages = array_map(function ($logEntry) {
             $message = $logEntry->getMessage();

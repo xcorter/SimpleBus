@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Recorder;
 
 /**
@@ -21,7 +23,7 @@ trait PrivateMessageRecorderCapabilities
     /**
      * {@inheritdoc}
      */
-    public function eraseMessages()
+    public function eraseMessages(): void
     {
         $this->messages = [];
     }
@@ -31,7 +33,7 @@ trait PrivateMessageRecorderCapabilities
      *
      * @param object $message
      */
-    protected function record($message)
+    protected function record($message): void
     {
         $this->messages[] = $message;
     }

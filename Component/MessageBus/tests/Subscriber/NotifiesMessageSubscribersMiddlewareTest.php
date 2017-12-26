@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\Subscriber;
 
 use PHPUnit\Framework\TestCase;
@@ -13,7 +15,7 @@ class NotifiesMessageSubscribersMiddlewareTest extends TestCase
     /**
      * @test
      */
-    public function it_notifies_all_the_relevant_message_subscribers()
+    public function it_notifies_all_the_relevant_message_subscribers(): void
     {
         $message = $this->dummyMessage();
 
@@ -40,7 +42,7 @@ class NotifiesMessageSubscribersMiddlewareTest extends TestCase
     /**
      * @test
      */
-    public function it_logs_every_call_to_a_subscriber()
+    public function it_logs_every_call_to_a_subscriber(): void
     {
         $message = $this->dummyMessage();
 

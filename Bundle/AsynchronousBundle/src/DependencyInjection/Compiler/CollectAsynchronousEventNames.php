@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\AsynchronousBundle\DependencyInjection\Compiler;
 
 use SimpleBus\SymfonyBridge\DependencyInjection\Compiler\CollectServices;
@@ -15,7 +17,7 @@ class CollectAsynchronousEventNames implements CompilerPassInterface
      *
      * @param ContainerBuilder $container
      */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $serviceId = 'simple_bus.asynchronous.publishes_predefined_messages_middleware';
         if (!$container->hasDefinition($serviceId)) {
@@ -27,7 +29,7 @@ class CollectAsynchronousEventNames implements CompilerPassInterface
             $container,
             'asynchronous_event_subscriber',
             'subscribes_to',
-            function ($key) use (&$names) {
+            function ($key) use (&$names): void {
                 $names[] = $key;
             }
         );

@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
 foreach ([__DIR__.'/../vendor/autoload.php', __DIR__.'/../../../vendor/autoload.php'] as $file) {

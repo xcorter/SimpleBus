@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\JMSSerializerBundleBridge\Tests\Functional;
 
 use JMS\Serializer\Annotation as Serializer;

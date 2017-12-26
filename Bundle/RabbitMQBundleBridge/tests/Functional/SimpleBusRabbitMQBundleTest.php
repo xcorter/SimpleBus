@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge\Tests\Functional;
 
 use Matthias\PhpUnitAsynchronicity\Eventually;
@@ -32,7 +34,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
         return 'SimpleBus\RabbitMQBundleBridge\Tests\Functional\TestKernel';
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         static::bootKernel();
 
@@ -49,7 +51,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
     /**
      * @test
      */
-    public function it_is_able_to_load_the_bundle()
+    public function it_is_able_to_load_the_bundle(): void
     {
         /*
          * There's no need to do anything here. This alone will prove that the bundle behaves well,
@@ -63,7 +65,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
      * @test
      * @group functional
      */
-    public function it_handles_commands_asynchronously()
+    public function it_handles_commands_asynchronously(): void
     {
         $this->consumeMessagesFromQueue('asynchronous_commands');
 
@@ -78,7 +80,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
      * @test
      * @group functional
      */
-    public function it_handles_events_asynchronously()
+    public function it_handles_events_asynchronously(): void
     {
         $this->consumeMessagesFromQueue('asynchronous_events');
 
@@ -91,7 +93,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
      * @test
      * @group functional
      */
-    public function it_logs_errors()
+    public function it_logs_errors(): void
     {
         $this->consumeMessagesFromQueue('asynchronous_commands');
 
@@ -104,7 +106,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
      * @test
      * @group functional
      */
-    public function it_resolve_properties()
+    public function it_resolve_properties(): void
     {
         $data = $this->additionalPropertiesResolver()->resolveAdditionalPropertiesFor($this->messageDummy());
 
@@ -115,7 +117,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
      * @test
      * @group functional
      */
-    public function it_sends_properties_to_producer()
+    public function it_sends_properties_to_producer(): void
     {
         $container = static::$kernel->getContainer();
         $container->set('old_sound_rabbit_mq.asynchronous_commands_producer', $container->get('simple_bus.rabbit_mq_bundle_bridge.delegating_additional_properties_resolver.producer_mock'));
@@ -129,7 +131,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
     /**
      * @param $message
      */
-    private function waitUntilLogFileContains($message)
+    private function waitUntilLogFileContains($message): void
     {
         self::assertThat(
             function () use ($message) {
@@ -189,7 +191,7 @@ class SimpleBusRabbitMQBundleTest extends KernelTestCase
         $this->process->start();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
 

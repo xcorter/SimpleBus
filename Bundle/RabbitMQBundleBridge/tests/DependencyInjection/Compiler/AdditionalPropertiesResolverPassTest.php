@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge\Tests\DependencyInjection\Compiler;
 
 use PHPUnit\Framework\TestCase;
@@ -20,7 +22,7 @@ class AdditionalPropertiesResolverPassTest extends TestCase
      */
     private $delegatingDefinition;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->container = new ContainerBuilder();
         $this->delegatingDefinition = new Definition('stdClass', [[]]);
@@ -32,7 +34,7 @@ class AdditionalPropertiesResolverPassTest extends TestCase
      * @test
      * @group test
      */
-    public function it_configures_a_chain_of_buses_according_to_the_given_priorities()
+    public function it_configures_a_chain_of_buses_according_to_the_given_priorities(): void
     {
         $classes = [
             Resolver1::class => 100,
@@ -59,7 +61,7 @@ class AdditionalPropertiesResolverPassTest extends TestCase
         return $definition;
     }
 
-    private function resolverContainsResolvers($expectedResolverClasses)
+    private function resolverContainsResolvers($expectedResolverClasses): void
     {
         $actualResolverClasses = [];
 

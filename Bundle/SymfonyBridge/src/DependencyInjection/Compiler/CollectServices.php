@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -11,7 +13,7 @@ trait CollectServices
         $tagName,
         $keyAttribute,
         callable $callback
-    ) {
+    ): void {
         foreach ($container->findTaggedServiceIds($tagName) as $serviceId => $tags) {
             foreach ($tags as $tagAttributes) {
                 if (!isset($tagAttributes[$keyAttribute])) {

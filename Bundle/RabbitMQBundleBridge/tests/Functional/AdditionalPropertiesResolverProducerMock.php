@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge\Tests\Functional;
 
 use OldSound\RabbitMqBundle\RabbitMq\Producer;
@@ -16,7 +18,7 @@ class AdditionalPropertiesResolverProducerMock extends Producer
         return $this->additionalProperties;
     }
 
-    public function publish($msgBody, $routingKey = '', $additionalProperties = [], array $headers = null)
+    public function publish($msgBody, $routingKey = '', $additionalProperties = [], array $headers = null): void
     {
         $this->additionalProperties = $additionalProperties;
     }

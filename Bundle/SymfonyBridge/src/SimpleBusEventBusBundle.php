@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge;
 
 use SimpleBus\SymfonyBridge\DependencyInjection\Compiler\AddMiddlewareTags;
@@ -24,7 +26,7 @@ class SimpleBusEventBusBundle extends Bundle
         $this->configurationAlias = $alias;
     }
 
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         $this->checkRequirements(['SimpleBusCommandBusBundle'], $container);
 

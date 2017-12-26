@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\DependencyInjection;
 
 use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
@@ -26,7 +28,7 @@ class CommandBusExtension extends ConfigurableExtension
         return new CommandBusConfiguration($this->getAlias());
     }
 
-    protected function loadInternal(array $mergedConfig, ContainerBuilder $container)
+    protected function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 

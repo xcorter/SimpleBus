@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Logging;
 
 use Psr\Log\LoggerInterface;
@@ -23,7 +25,7 @@ class LoggingMiddleware implements MessageBusMiddleware
         $this->level = $level;
     }
 
-    public function handle($message, callable $next)
+    public function handle($message, callable $next): void
     {
         $this->logger->log($this->level, 'Started handling a message', ['message' => $message]);
 

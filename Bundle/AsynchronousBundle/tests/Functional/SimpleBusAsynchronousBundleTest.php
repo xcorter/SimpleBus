@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\AsynchronousBundle\Tests\Functional;
 
 use SimpleBus\Message\Bus\MessageBus;
@@ -13,7 +15,7 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
         return 'SimpleBus\AsynchronousBundle\Tests\Functional\TestKernel';
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
 
@@ -24,7 +26,7 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
     /**
      * @test
      */
-    public function it_notifies_synchronous_event_subscribers_and_publishes_events()
+    public function it_notifies_synchronous_event_subscribers_and_publishes_events(): void
     {
         $kernel = static::createKernel();
         $kernel->boot();
@@ -46,7 +48,7 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
     /**
      * @test
      */
-    public function it_notifies_asynchronous_event_subscribers()
+    public function it_notifies_asynchronous_event_subscribers(): void
     {
         $kernel = static::createKernel();
         $kernel->boot();
@@ -68,7 +70,7 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
     /**
      * @test
      */
-    public function it_only_publishes_unhandled_commands()
+    public function it_only_publishes_unhandled_commands(): void
     {
         $kernel = static::createKernel();
         $kernel->boot();
@@ -86,7 +88,7 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
     /**
      * @test
      */
-    public function it_handles_asynchronous_commands()
+    public function it_handles_asynchronous_commands(): void
     {
         $kernel = static::createKernel();
         $kernel->boot();
@@ -108,7 +110,7 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
     /**
      * @test
      */
-    public function it_consumes_asynchronous_commands()
+    public function it_consumes_asynchronous_commands(): void
     {
         $kernel = static::createKernel();
         $kernel->boot();
@@ -127,7 +129,7 @@ class SimpleBusAsynchronousBundleTest extends KernelTestCase
     /**
      * @test
      */
-    public function it_consumes_asynchronous_events()
+    public function it_consumes_asynchronous_events(): void
     {
         $kernel = static::createKernel();
         $kernel->boot();

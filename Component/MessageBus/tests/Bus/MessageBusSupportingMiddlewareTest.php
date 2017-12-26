@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\Bus;
 
 use PHPUnit\Framework\TestCase;
@@ -10,7 +12,7 @@ class MessageBusSupportingMiddlewareTest extends TestCase
     /**
      * @test
      */
-    public function it_lets_all_stacked_message_buses_handle_the_message()
+    public function it_lets_all_stacked_message_buses_handle_the_message(): void
     {
         $actualMessageBusesCalled = [];
 
@@ -30,7 +32,7 @@ class MessageBusSupportingMiddlewareTest extends TestCase
     /**
      * @test
      */
-    public function it_works_with_no_message_buses()
+    public function it_works_with_no_message_buses(): void
     {
         $message = $this->dummyMessage();
         $messageBusStack = new MessageBusSupportingMiddleware([]);
@@ -42,7 +44,7 @@ class MessageBusSupportingMiddlewareTest extends TestCase
     /**
      * @test
      */
-    public function it_works_with_one_message_bus()
+    public function it_works_with_one_message_bus(): void
     {
         $actualMessageBusesCalled = [];
 
@@ -60,7 +62,7 @@ class MessageBusSupportingMiddlewareTest extends TestCase
     /**
      * @test
      */
-    public function it_can_prepend_middleware()
+    public function it_can_prepend_middleware(): void
     {
         $actualMessageBusesCalled = [];
 
@@ -81,7 +83,7 @@ class MessageBusSupportingMiddlewareTest extends TestCase
     /**
      * @test
      */
-    public function it_can_return_an_array_with_its_middlewares()
+    public function it_can_return_an_array_with_its_middlewares(): void
     {
         $stackedMessageBuses = [
             $this->createMock('SimpleBus\Message\Bus\Middleware\MessageBusMiddleware'),
@@ -102,7 +104,7 @@ class MessageBusSupportingMiddlewareTest extends TestCase
             ->method('handle')
             ->will(
                 $this->returnCallback(
-                    function ($message, callable $next) use (&$actualMessageBusesCalled, $messageBus) {
+                    function ($message, callable $next) use (&$actualMessageBusesCalled, $messageBus): void {
                         $actualMessageBusesCalled[] = $messageBus;
                         $next($message);
                     }

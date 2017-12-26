@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge\Event;
 
 use PhpAmqpLib\Message\AMQPMessage;
@@ -22,7 +24,7 @@ class AbstractMessageEvent extends Event
         return $this->message;
     }
 
-    public function stopPropagation()
+    public function stopPropagation(): void
     {
         throw new \BadMethodCallException('Propagation should not be stopped');
     }

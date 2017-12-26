@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\CallableResolver;
 
 use PHPUnit\Framework\TestCase;
@@ -19,7 +21,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
 
     private $serviceLocator;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->services = [];
         $this->serviceLocator = function ($serviceId) {
@@ -31,9 +33,9 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_returns_a_handler_if_it_is_a_callable()
+    public function it_returns_a_handler_if_it_is_a_callable(): void
     {
-        $callable = function () {
+        $callable = function (): void {
         };
 
         $this->assertSame($callable, $this->resolver->resolve($callable));
@@ -42,9 +44,9 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_returns_a_callable_service()
+    public function it_returns_a_callable_service(): void
     {
-        $callable = function () {
+        $callable = function (): void {
         };
         $this->services['callable_service_id'] = $callable;
 
@@ -54,9 +56,9 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_returns_a_callable_service_and_method()
+    public function it_returns_a_callable_service_and_method(): void
     {
-        $callable = function () {
+        $callable = function (): void {
         };
         $this->services['callable_service_id'] = $callable;
 
@@ -66,7 +68,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_if_object_and_method_array_is_not_a_callable()
+    public function it_fails_if_object_and_method_array_is_not_a_callable(): void
     {
         $this->expectException('SimpleBus\Message\CallableResolver\Exception\CouldNotResolveCallable');
         $this->resolver->resolve([new \stdClass(), 'nonExistingMethod']);
@@ -75,7 +77,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_if_the_loaded_service_is_not_callable()
+    public function it_fails_if_the_loaded_service_is_not_callable(): void
     {
         $this->services['not_a_callable'] = new \stdClass();
 
@@ -87,7 +89,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_if_the_loaded_service_is_not_callable_does_not_list_child_service()
+    public function it_fails_if_the_loaded_service_is_not_callable_does_not_list_child_service(): void
     {
         $handler = new \stdClass();
         $handler->childService = new \stdClass();
@@ -102,7 +104,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_if_the_loaded_service_and_method_array_is_not_callable()
+    public function it_fails_if_the_loaded_service_and_method_array_is_not_callable(): void
     {
         $this->services['callable_service_id'] = new \stdClass();
 
@@ -116,7 +118,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_if_the_loaded_service_and_method_array_is_not_callable_does_not_list_child_service()
+    public function it_fails_if_the_loaded_service_and_method_array_is_not_callable_does_not_list_child_service(): void
     {
         $handler = new \stdClass();
         $handler->childService = new \stdClass();
@@ -133,7 +135,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_uses_the_handle_method_if_it_exists()
+    public function it_uses_the_handle_method_if_it_exists(): void
     {
         $legacyHandler = new LegacyHandler();
 
@@ -143,7 +145,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_uses_the_notify_method_if_it_exists()
+    public function it_uses_the_notify_method_if_it_exists(): void
     {
         $legacySubscriber = new LegacySubscriber();
 
@@ -153,7 +155,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_supports_class_based_services()
+    public function it_supports_class_based_services(): void
     {
         $subscriber = new SubscriberWithCustomNotify();
 

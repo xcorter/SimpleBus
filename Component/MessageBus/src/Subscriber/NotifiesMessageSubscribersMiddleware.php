@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Subscriber;
 
 use Psr\Log\LoggerInterface;
@@ -40,7 +42,7 @@ class NotifiesMessageSubscribersMiddleware implements MessageBusMiddleware
         $this->level = $level;
     }
 
-    public function handle($message, callable $next)
+    public function handle($message, callable $next): void
     {
         $messageSubscribers = $this->messageSubscribersResolver->resolve($message);
 

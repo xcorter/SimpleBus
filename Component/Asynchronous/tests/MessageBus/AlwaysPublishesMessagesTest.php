@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Asynchronous\Tests\MessageBus;
 
 use PHPUnit\Framework\TestCase;
@@ -11,7 +13,7 @@ class AlwaysPublishesMessagesTest extends TestCase
     /**
      * @test
      */
-    public function it_publishes_a_message_and_calls_the_next_middleware()
+    public function it_publishes_a_message_and_calls_the_next_middleware(): void
     {
         $message = $this->dummyMessage();
         $publisher = $this->mockPublisher();
@@ -21,7 +23,7 @@ class AlwaysPublishesMessagesTest extends TestCase
             ->with($this->identicalTo($message));
 
         $nextCallableCalled = false;
-        $next = function ($actualMessage) use ($message, &$nextCallableCalled) {
+        $next = function ($actualMessage) use ($message, &$nextCallableCalled): void {
             $nextCallableCalled = true;
             $this->assertSame($message, $actualMessage);
         };

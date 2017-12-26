@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\Recorder;
 
 use Exception;
@@ -14,7 +16,7 @@ class HandlesRecordedMessagesMiddlewareTest extends TestCase
     /**
      * @test
      */
-    public function it_handles_recorded_messages()
+    public function it_handles_recorded_messages(): void
     {
         $messages = [$this->dummyMessage(), $this->dummyMessage()];
         $messageRecorder = $this->mockMessageRecorder();
@@ -47,14 +49,14 @@ class HandlesRecordedMessagesMiddlewareTest extends TestCase
     /**
      * @test
      */
-    public function it_rethrows_a_caught_exception_but_first_clears_any_recorded_messages()
+    public function it_rethrows_a_caught_exception_but_first_clears_any_recorded_messages(): void
     {
         $messageRecorder = $this->mockMessageRecorder();
 
         $middleware = new HandlesRecordedMessagesMiddleware($messageRecorder, $this->dummyMessageBus());
 
         $exception = new Exception();
-        $nextAlwaysFails = function () use ($exception) {
+        $nextAlwaysFails = function () use ($exception): void {
             throw $exception;
         };
 
@@ -85,7 +87,7 @@ class HandlesRecordedMessagesMiddlewareTest extends TestCase
             ->method('handle')
             ->will(
                 $this->returnCallback(
-                    function ($message) use (&$actuallyHandledMessages) {
+                    function ($message) use (&$actuallyHandledMessages): void {
                         $actuallyHandledMessages[] = $message;
                     }
                 )

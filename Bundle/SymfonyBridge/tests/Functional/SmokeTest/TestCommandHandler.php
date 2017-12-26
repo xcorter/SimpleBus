@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest;
 
 use Doctrine\ORM\EntityManager;
@@ -16,7 +18,7 @@ class TestCommandHandler
         $this->entityManager = $entityManager;
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->commandHandled = true;
 

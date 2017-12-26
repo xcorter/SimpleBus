@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -31,7 +33,7 @@ class AddMiddlewareTags implements CompilerPassInterface
         $this->middlewarePriority = $middlewarePriority;
     }
 
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (!($container->has($this->middlewareServiceId))) {
             return;

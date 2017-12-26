@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest;
 
 use SimpleBus\Message\Recorder\RecordsMessages;
@@ -14,7 +16,7 @@ class SomeOtherTestCommandHandler
         $this->messageRecorder = $messageRecorder;
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->commandHandled = true;
 

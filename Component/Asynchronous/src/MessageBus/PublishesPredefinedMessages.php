@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Asynchronous\MessageBus;
 
 use SimpleBus\Asynchronous\Publisher\Publisher;
@@ -40,7 +42,7 @@ class PublishesPredefinedMessages implements MessageBusMiddleware
      *
      * {@inheritdoc}
      */
-    public function handle($message, callable $next)
+    public function handle($message, callable $next): void
     {
         $name = $this->messageNameResolver->resolve($message);
         if (in_array($name, $this->names)) {

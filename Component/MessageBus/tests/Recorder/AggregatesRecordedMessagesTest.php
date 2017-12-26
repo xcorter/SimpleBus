@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\Recorder;
 
 use PHPUnit\Framework\TestCase;
@@ -11,7 +13,7 @@ class AggregatesRecordedMessagesTest extends TestCase
     /**
      * @test
      */
-    public function it_collects_messages_recorded_by_all_message_recorders()
+    public function it_collects_messages_recorded_by_all_message_recorders(): void
     {
         $message1 = $this->dummyMessage();
         $message2 = $this->dummyMessage();
@@ -35,7 +37,7 @@ class AggregatesRecordedMessagesTest extends TestCase
     /**
      * @test
      */
-    public function it_erases_messages_recorded_by_all_message_recorders()
+    public function it_erases_messages_recorded_by_all_message_recorders(): void
     {
         $message1 = $this->dummyMessage();
         $messageRecorder1 = new ContainsRecordedMessagesStub([$message1]);

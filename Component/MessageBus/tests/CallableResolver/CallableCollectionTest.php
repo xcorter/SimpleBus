@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\CallableResolver;
 
 use PHPUnit\Framework\TestCase;
@@ -13,7 +15,7 @@ class CallableCollectionTest extends TestCase
      */
     private $callableResolver;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->callableResolver = $this->createMock('SimpleBus\Message\CallableResolver\CallableResolver');
     }
@@ -21,7 +23,7 @@ class CallableCollectionTest extends TestCase
     /**
      * @test
      */
-    public function it_returns_an_empty_array_if_no_callables_are_defined()
+    public function it_returns_an_empty_array_if_no_callables_are_defined(): void
     {
         $collection = new CallableCollection([], $this->callableResolver);
         $this->assertSame([], $collection->filter('undefined_name'));
@@ -30,11 +32,11 @@ class CallableCollectionTest extends TestCase
     /**
      * @test
      */
-    public function it_returns_many_resolved_callables_for_a_given_name()
+    public function it_returns_many_resolved_callables_for_a_given_name(): void
     {
-        $message1Callable1 = function () {
+        $message1Callable1 = function (): void {
         };
-        $message1Callable2 = function () {
+        $message1Callable2 = function (): void {
         };
         $collection = new CallableCollection(
             [
@@ -43,8 +45,8 @@ class CallableCollectionTest extends TestCase
                     $message1Callable2,
                 ],
                 'message2' => [
-                    function () {},
-                    function () {},
+                    function (): void {},
+                    function (): void {},
                 ],
             ],
             $this->callableResolver
@@ -57,7 +59,7 @@ class CallableCollectionTest extends TestCase
         $this->assertSame([$message1Callable1, $message1Callable2], $callables);
     }
 
-    private function callableResolverShouldResolve(array $callables)
+    private function callableResolverShouldResolve(array $callables): void
     {
         foreach ($callables as $index => $callable) {
             $this->callableResolver

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\Tests\Functional\SmokeTest\Auto;
 
 final class AutoEventSubscriberUsingPublicMethod
@@ -14,12 +16,12 @@ final class AutoEventSubscriberUsingPublicMethod
     {
     }
 
-    public function someEventHandler(AutoEvent2 $event)
+    public function someEventHandler(AutoEvent2 $event): void
     {
         $this->handled[] = $event;
     }
 
-    public function someOtherEventHandler(AutoEvent3 $event)
+    public function someOtherEventHandler(AutoEvent3 $event): void
     {
         $this->handled[] = $event;
     }

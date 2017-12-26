@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\Tests\SymfonyBundle\DependencyInjection\Compiler;
 
 use PHPUnit\Framework\TestCase;
@@ -27,7 +29,7 @@ class ConfigureMiddlewaresTest extends TestCase
      */
     private $mainBusDefinition;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->container = new ContainerBuilder();
         $this->mainBusDefinition = new Definition('stdClass');
@@ -38,7 +40,7 @@ class ConfigureMiddlewaresTest extends TestCase
     /**
      * @test
      */
-    public function it_configures_a_chain_of_buses_according_to_the_given_priorities()
+    public function it_configures_a_chain_of_buses_according_to_the_given_priorities(): void
     {
         $classes = [
             AuteEvent1::class => 100,
@@ -65,7 +67,7 @@ class ConfigureMiddlewaresTest extends TestCase
         return $definition;
     }
 
-    private function commandBusContainsMiddlewares($expectedMiddlewareclasses)
+    private function commandBusContainsMiddlewares($expectedMiddlewareclasses): void
     {
         $actualMiddlewareClasses = [];
 

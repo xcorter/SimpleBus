@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\DoctrineORMBridge\Tests\EventListener;
 
 use Noback\PHPUnitTestServiceContainer\PHPUnit\TestCaseWithEntityManager;
@@ -28,7 +30,7 @@ class CollectsEventsFromEntitiesTest extends TestCase
         return [__DIR__.'/Fixtures/Entity'];
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -39,7 +41,7 @@ class CollectsEventsFromEntitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_collects_events_from_persisted_entities_and_erases_them_afterwards()
+    public function it_collects_events_from_persisted_entities_and_erases_them_afterwards(): void
     {
         $entity = new EventRecordingEntity();
 
@@ -52,7 +54,7 @@ class CollectsEventsFromEntitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_collects_events_from_modified_entities_and_erases_them_afterwards()
+    public function it_collects_events_from_modified_entities_and_erases_them_afterwards(): void
     {
         $entity = new EventRecordingEntity();
         $this->persistAndFlush($entity);
@@ -69,7 +71,7 @@ class CollectsEventsFromEntitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_collects_events_from_removed_entities_and_erases_them_afterwards()
+    public function it_collects_events_from_removed_entities_and_erases_them_afterwards(): void
     {
         $entity = new EventRecordingEntity();
         $this->persistAndFlush($entity);
@@ -86,7 +88,7 @@ class CollectsEventsFromEntitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_collects_events_from_not_dirty_entities_and_erases_them_afterwards()
+    public function it_collects_events_from_not_dirty_entities_and_erases_them_afterwards(): void
     {
         $entity = new EventRecordingEntity();
         $this->persistAndFlush($entity);
@@ -103,7 +105,7 @@ class CollectsEventsFromEntitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_collects_events_from_pre_persist_lifecycle_callbacks_of_entities_and_erases_them_afterwards()
+    public function it_collects_events_from_pre_persist_lifecycle_callbacks_of_entities_and_erases_them_afterwards(): void
     {
         $entity = new EventRecordingEntity();
         $this->persistAndFlush($entity);
@@ -116,7 +118,7 @@ class CollectsEventsFromEntitiesTest extends TestCase
     /**
      * @test
      */
-    public function it_collects_events_from_pre_update_lifecycle_callbacks_of_dirty_entities_and_erases_them_afterwards()
+    public function it_collects_events_from_pre_update_lifecycle_callbacks_of_dirty_entities_and_erases_them_afterwards(): void
     {
         $entity = new EventRecordingEntity();
         $this->persistAndFlush($entity);
@@ -130,23 +132,23 @@ class CollectsEventsFromEntitiesTest extends TestCase
         $this->assertEntityHasNoRecordedEvents($entity);
     }
 
-    private function persistAndFlush($entity)
+    private function persistAndFlush($entity): void
     {
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();
     }
 
-    private function eraseRecordedMessages()
+    private function eraseRecordedMessages(): void
     {
         $this->eventSubscriber->eraseMessages();
     }
 
-    private function assertEntityHasNoRecordedEvents(ContainsRecordedMessages $entity)
+    private function assertEntityHasNoRecordedEvents(ContainsRecordedMessages $entity): void
     {
         $this->assertSame([], $entity->recordedMessages());
     }
 
-    private function removeAndFlush($entity)
+    private function removeAndFlush($entity): void
     {
         $this->getEntityManager()->remove($entity);
         $this->getEntityManager()->flush();

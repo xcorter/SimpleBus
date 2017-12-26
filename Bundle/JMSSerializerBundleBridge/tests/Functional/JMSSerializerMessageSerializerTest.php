@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\JMSSerializerBundleBridge\Tests\Functional;
 
 use SimpleBus\Serialization\Envelope\Serializer\MessageInEnvelopeSerializer;
@@ -12,7 +14,7 @@ class JMSSerializerMessageSerializerTest extends KernelTestCase
         return 'SimpleBus\JMSSerializerBundleBridge\Tests\Functional\TestKernel';
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
 
@@ -23,7 +25,7 @@ class JMSSerializerMessageSerializerTest extends KernelTestCase
     /**
      * @test
      */
-    public function it_serializes_and_deserializes_messages_in_envelopes()
+    public function it_serializes_and_deserializes_messages_in_envelopes(): void
     {
         $kernel = $this->createKernel([
             'debug' => false,

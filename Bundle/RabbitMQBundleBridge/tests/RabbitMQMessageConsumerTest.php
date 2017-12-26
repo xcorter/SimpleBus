@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge\Tests;
 
 use Exception;
@@ -16,7 +18,7 @@ class RabbitMQMessageConsumerTest extends TestCase
     /**
      * @test
      */
-    public function it_consumes_the_message_body_as_a_serialized_envelope()
+    public function it_consumes_the_message_body_as_a_serialized_envelope(): void
     {
         $serializedEnvelope = 'a serialized envelope';
         $message = $this->newAMQPMessage($serializedEnvelope);
@@ -36,7 +38,7 @@ class RabbitMQMessageConsumerTest extends TestCase
     /**
      * @test
      */
-    public function it_handles_an_error_but_throws_no_exception_if_consuming_the_message_fails()
+    public function it_handles_an_error_but_throws_no_exception_if_consuming_the_message_fails(): void
     {
         $exception = new Exception('I always fail');
         $serializedEnvelopeConsumer = $this->mockSerializedEnvelopeConsumer();
@@ -71,7 +73,7 @@ class RabbitMQMessageConsumerTest extends TestCase
         $eventDispatcher
             ->expects($this->once())
             ->method('dispatch')
-            ->will($this->returnCallback(function ($name, MessageConsumptionFailed $event) use ($message, $exception) {
+            ->will($this->returnCallback(function ($name, MessageConsumptionFailed $event) use ($message, $exception): void {
                 $this->assertSame(Events::MESSAGE_CONSUMPTION_FAILED, $name);
                 $this->assertSame($message, $event->message());
                 $this->assertSame($exception, $event->exception());
@@ -87,7 +89,7 @@ class RabbitMQMessageConsumerTest extends TestCase
         $eventDispatcher
             ->expects($this->once())
             ->method('dispatch')
-            ->will($this->returnCallback(function ($name, MessageConsumed $event) use ($message) {
+            ->will($this->returnCallback(function ($name, MessageConsumed $event) use ($message): void {
                 $this->assertSame(Events::MESSAGE_CONSUMED, $name);
                 $this->assertSame($message, $event->message());
             }));

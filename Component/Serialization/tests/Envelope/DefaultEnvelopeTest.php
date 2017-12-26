@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Message\Envelope;
 
 use PHPUnit\Framework\TestCase;
@@ -11,7 +13,7 @@ class DefaultEnvelopeTest extends TestCase
     /**
      * @test
      */
-    public function it_creates_an_envelope_for_a_message()
+    public function it_creates_an_envelope_for_a_message(): void
     {
         $message = new DummyMessage();
         $type = get_class($message);
@@ -25,7 +27,7 @@ class DefaultEnvelopeTest extends TestCase
     /**
      * @test
      */
-    public function it_creates_a_new_instance_for_a_different_message()
+    public function it_creates_a_new_instance_for_a_different_message(): void
     {
         $message = new DummyMessage();
         $type = get_class($message);
@@ -42,7 +44,7 @@ class DefaultEnvelopeTest extends TestCase
     /**
      * @test
      */
-    public function it_creates_a_new_instance_for_a_serialized_version_of_the_message()
+    public function it_creates_a_new_instance_for_a_serialized_version_of_the_message(): void
     {
         $message = new DummyMessage();
         $type = get_class($message);
@@ -60,7 +62,7 @@ class DefaultEnvelopeTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_when_the_serialized_message_is_unavailable()
+    public function it_fails_when_the_serialized_message_is_unavailable(): void
     {
         $message = new DummyMessage();
         $envelope = DefaultEnvelope::forMessage($message);
@@ -73,7 +75,7 @@ class DefaultEnvelopeTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_when_the_message_is_unavailable()
+    public function it_fails_when_the_message_is_unavailable(): void
     {
         $envelope = DefaultEnvelope::forSerializedMessage(
             'SimpleBus\Serialization\Tests\Fixtures\DummyMessage',

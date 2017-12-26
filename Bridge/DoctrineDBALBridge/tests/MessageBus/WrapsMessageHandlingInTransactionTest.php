@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\DoctrineDBALBridge\Tests\MessageBus;
 
 use PHPUnit\Framework\TestCase;
@@ -10,12 +12,12 @@ class WrapsMessageHandlingInTransactionTest extends TestCase
     /**
      * @test
      */
-    public function it_wraps_the_next_middleware_in_a_transaction()
+    public function it_wraps_the_next_middleware_in_a_transaction(): void
     {
         $nextIsCalled = false;
         $message = new \stdClass();
 
-        $nextMiddlewareCallable = function (\stdClass $actualMessage) use ($message, &$nextIsCalled) {
+        $nextMiddlewareCallable = function (\stdClass $actualMessage) use ($message, &$nextIsCalled): void {
             $this->assertSame($message, $actualMessage);
             $nextIsCalled = true;
         };
@@ -38,12 +40,12 @@ class WrapsMessageHandlingInTransactionTest extends TestCase
     /**
      * @test
      */
-    public function it_rolls_the_transaction_back_when_an_exception_is_thrown()
+    public function it_rolls_the_transaction_back_when_an_exception_is_thrown(): void
     {
         $exception = new \Exception();
         $message = new \stdClass();
 
-        $nextMiddlewareCallable = function () use ($exception) {
+        $nextMiddlewareCallable = function () use ($exception): void {
             throw $exception;
         };
 

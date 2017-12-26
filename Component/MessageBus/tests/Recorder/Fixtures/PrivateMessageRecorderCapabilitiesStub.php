@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\Recorder\Fixtures;
 
 use SimpleBus\Message\Recorder\PrivateMessageRecorderCapabilities;
@@ -9,7 +11,7 @@ class PrivateMessageRecorderCapabilitiesStub implements ContainsRecordedMessages
 {
     use PrivateMessageRecorderCapabilities;
 
-    public function publicRecord($message)
+    public function publicRecord($message): void
     {
         $this->record($message);
     }

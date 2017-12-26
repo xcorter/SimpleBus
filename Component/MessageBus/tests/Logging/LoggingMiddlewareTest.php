@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\Logging;
 
 use PHPUnit\Framework\TestCase;
@@ -11,7 +13,7 @@ class LoggingMiddlewareTest extends TestCase
     /**
      * @test
      */
-    public function it_logs_messages_before_and_after_handling_it()
+    public function it_logs_messages_before_and_after_handling_it(): void
     {
         $orderOfEvents = [];
         $message = $this->dummyMessage();
@@ -22,7 +24,7 @@ class LoggingMiddlewareTest extends TestCase
         $logger
             ->expects($this->exactly(2))
             ->method('log')
-            ->will($this->returnCallback(function ($actualLevel, $logMessage, array $context) use (&$orderOfEvents, $message, $logLevel) {
+            ->will($this->returnCallback(function ($actualLevel, $logMessage, array $context) use (&$orderOfEvents, $message, $logLevel): void {
                 $orderOfEvents[] = 'Logged: '.$logMessage;
                 $this->assertSame(['message' => $message], $context);
                 $this->assertSame($logLevel, $actualLevel);
@@ -30,7 +32,7 @@ class LoggingMiddlewareTest extends TestCase
 
         $middleware = new LoggingMiddleware($logger, $logLevel);
 
-        $next = function ($actualMessage) use (&$orderOfEvents, $message) {
+        $next = function ($actualMessage) use (&$orderOfEvents, $message): void {
             $orderOfEvents[] = 'Called next middleware';
             $this->assertSame($message, $actualMessage);
         };

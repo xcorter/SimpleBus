@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Bus\Middleware;
 
 use SimpleBus\Message\Bus\MessageBus;
@@ -25,7 +27,7 @@ class MessageBusSupportingMiddleware implements MessageBus
      *
      * @param MessageBusMiddleware $middleware
      */
-    public function appendMiddleware(MessageBusMiddleware $middleware)
+    public function appendMiddleware(MessageBusMiddleware $middleware): void
     {
         $this->middlewares[] = $middleware;
     }
@@ -49,12 +51,12 @@ class MessageBusSupportingMiddleware implements MessageBus
      *
      * @param MessageBusMiddleware $middleware
      */
-    public function prependMiddleware(MessageBusMiddleware $middleware)
+    public function prependMiddleware(MessageBusMiddleware $middleware): void
     {
         array_unshift($this->middlewares, $middleware);
     }
 
-    public function handle($message)
+    public function handle($message): void
     {
         call_user_func($this->callableForNextMiddleware(0), $message);
     }
@@ -62,13 +64,13 @@ class MessageBusSupportingMiddleware implements MessageBus
     private function callableForNextMiddleware($index)
     {
         if (!isset($this->middlewares[$index])) {
-            return function () {
+            return function (): void {
             };
         }
 
         $middleware = $this->middlewares[$index];
 
-        return function ($message) use ($middleware, $index) {
+        return function ($message) use ($middleware, $index): void {
             $middleware->handle($message, $this->callableForNextMiddleware($index + 1));
         };
     }

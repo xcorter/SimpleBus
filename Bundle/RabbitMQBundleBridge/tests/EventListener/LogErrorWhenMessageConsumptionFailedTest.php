@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge\Tests\ErrorHandling;
 
 use Exception;
@@ -14,7 +16,7 @@ class LogErrorWhenMessageConsumptionFailedTest extends TestCase
     /**
      * @test
      */
-    public function it_logs_the_error()
+    public function it_logs_the_error(): void
     {
         $exception = new Exception();
         $message = new AMQPMessage();

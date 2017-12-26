@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Serialization\Tests\Envelope\Serializer;
 
 use PHPUnit\Framework\TestCase;
@@ -15,7 +17,7 @@ class StandardMessageInEnvelopeSerializerTest extends TestCase
     /**
      * @test
      */
-    public function it_serializes_a_message_and_wraps_it_in_a_serialized_envelope()
+    public function it_serializes_a_message_and_wraps_it_in_a_serialized_envelope(): void
     {
         $message = new DummyMessage();
         $serializedMessage = 'the serialized message';
@@ -39,7 +41,7 @@ class StandardMessageInEnvelopeSerializerTest extends TestCase
     /**
      * @test
      */
-    public function it_deserializes_a_message_after_unwrapping_it_from_its_serialized_envelope()
+    public function it_deserializes_a_message_after_unwrapping_it_from_its_serialized_envelope(): void
     {
         $message = new DummyMessage();
 
@@ -66,7 +68,7 @@ class StandardMessageInEnvelopeSerializerTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_if_the_deserialized_envelope_is_not_of_the_expected_type()
+    public function it_fails_if_the_deserialized_envelope_is_not_of_the_expected_type(): void
     {
         $envelopeClass = 'The\Envelope\Class';
         $serializedEnvelope = 'the serialized envelope';
@@ -86,7 +88,7 @@ class StandardMessageInEnvelopeSerializerTest extends TestCase
     /**
      * @test
      */
-    public function it_fails_if_the_deserialized_message_is_not_of_the_expected_type()
+    public function it_fails_if_the_deserialized_message_is_not_of_the_expected_type(): void
     {
         $message = new DummyMessage();
 

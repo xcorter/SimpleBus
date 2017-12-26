@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Asynchronous\MessageBus;
 
 use Psr\Log\LoggerInterface;
@@ -38,7 +40,7 @@ class PublishesUnhandledMessages implements MessageBusMiddleware
      * @param object   $message
      * @param callable $next
      */
-    public function handle($message, callable $next)
+    public function handle($message, callable $next): void
     {
         try {
             $next($message);

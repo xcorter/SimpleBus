@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge;
 
 use SimpleBus\SymfonyBridge\DependencyInjection\CommandBusExtension;
@@ -19,7 +21,7 @@ class SimpleBusCommandBusBundle extends Bundle
         $this->configurationAlias = $alias;
     }
 
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(
             new AutoRegister('command_handler', 'handles'),

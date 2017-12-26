@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\DoctrineORMBridge\Tests\MessageBus;
 
 use Exception;
@@ -11,11 +13,11 @@ class WrapsMessageHandlingInTransactionTest extends TestCase
     /**
      * @test
      */
-    public function it_wraps_the_next_middleware_in_a_transaction()
+    public function it_wraps_the_next_middleware_in_a_transaction(): void
     {
         $nextIsCalled = false;
         $message = $this->dummyMessage();
-        $nextMiddlewareCallable = function ($actualMessage) use ($message, &$nextIsCalled) {
+        $nextMiddlewareCallable = function ($actualMessage) use ($message, &$nextIsCalled): void {
             $this->assertSame($message, $actualMessage);
             $nextIsCalled = true;
         };
@@ -30,7 +32,7 @@ class WrapsMessageHandlingInTransactionTest extends TestCase
             ->method('transactional')
             ->will(
                 $this->returnCallback(
-                    function (callable $transactionalCallback) {
+                    function (callable $transactionalCallback): void {
                         $transactionalCallback();
                     }
                 )
@@ -52,7 +54,7 @@ class WrapsMessageHandlingInTransactionTest extends TestCase
     /**
      * @test
      */
-    public function it_resets_the_entity_manager_if_the_transaction_fails()
+    public function it_resets_the_entity_manager_if_the_transaction_fails(): void
     {
         $message = $this->dummyMessage();
         $throwException = new Exception();
@@ -67,7 +69,7 @@ class WrapsMessageHandlingInTransactionTest extends TestCase
             ->method('transactional')
             ->will(
                 $this->returnCallback(
-                    function () use ($throwException) {
+                    function () use ($throwException): void {
                         throw $throwException;
                     }
                 )
@@ -89,7 +91,7 @@ class WrapsMessageHandlingInTransactionTest extends TestCase
         try {
             $middleware->handle(
                 $message,
-                function () {
+                function (): void {
                 }
             );
             $this->fail('An exception should have been thrown');

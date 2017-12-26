@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\Bus\Middleware;
 
 use SimpleBus\Message\Bus\Middleware\MessageBusMiddleware;
@@ -23,7 +25,7 @@ class MessageLogger implements MessageBusMiddleware
     /**
      * {@inheritdoc}
      */
-    public function handle($message, callable $next)
+    public function handle($message, callable $next): void
     {
         $this->logger->logMessage($message, $this->busName);
 

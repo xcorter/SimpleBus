@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Message\Tests\Fixtures;
 
 class CallableSpy
@@ -7,7 +9,7 @@ class CallableSpy
     private $hasBeenCalled = 0;
     private $receivedMessages = [];
 
-    public function __invoke($message)
+    public function __invoke($message): void
     {
         ++$this->hasBeenCalled;
         $this->receivedMessages[] = $message;

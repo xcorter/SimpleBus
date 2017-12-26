@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\SymfonyBridge\Logger;
 
 class MessageLogger
@@ -22,7 +24,7 @@ class MessageLogger
         $this->messages = [];
     }
 
-    public function logMessage($message, $busName)
+    public function logMessage($message, $busName): void
     {
         if (!$this->enabled) {
             return;

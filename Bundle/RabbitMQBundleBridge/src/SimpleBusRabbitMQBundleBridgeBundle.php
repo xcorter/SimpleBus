@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge;
 
 use SimpleBus\RabbitMQBundleBridge\DependencyInjection\Compiler\AdditionalPropertiesResolverPass;
@@ -14,7 +16,7 @@ class SimpleBusRabbitMQBundleBridgeBundle extends Bundle
         return new SimpleBusRabbitMQBundleBridgeExtension('simple_bus_rabbit_mq_bundle_bridge');
     }
 
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new AdditionalPropertiesResolverPass());
     }

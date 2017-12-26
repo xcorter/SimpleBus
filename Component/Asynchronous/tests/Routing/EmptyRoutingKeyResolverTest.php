@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Asynchronous\Tests\Routing;
 
 use PHPUnit\Framework\TestCase;
@@ -10,7 +12,7 @@ class EmptyRoutingKeyResolverTest extends TestCase
     /**
      * @test
      */
-    public function it_returns_an_empty_routing_key()
+    public function it_returns_an_empty_routing_key(): void
     {
         $resolver = new EmptyRoutingKeyResolver();
         $this->assertSame('', $resolver->resolveRoutingKeyFor($this->messageDummy()));

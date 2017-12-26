@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Asynchronous\Tests\Consumer;
 
 use PHPUnit\Framework\TestCase;
@@ -13,7 +15,7 @@ class StandardSerializedEnvelopeConsumerTest extends TestCase
     /**
      * @test
      */
-    public function it_deserializes_the_envelop_and_lets_the_message_bus_handle_the_message()
+    public function it_deserializes_the_envelop_and_lets_the_message_bus_handle_the_message(): void
     {
         $serializedEnvelope = 'serialized envelop';
 

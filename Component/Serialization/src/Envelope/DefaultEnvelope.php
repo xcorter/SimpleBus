@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Serialization\Envelope;
 
 use Assert\Assertion;
@@ -101,19 +103,19 @@ class DefaultEnvelope implements Envelope
         return new self($this->messageType, $this->message, $serializedMessage);
     }
 
-    private function setMessageType($messageType)
+    private function setMessageType($messageType): void
     {
         Assertion::string($messageType);
 
         $this->messageType = $messageType;
     }
 
-    private function setMessage($message = null)
+    private function setMessage($message = null): void
     {
         $this->message = $message;
     }
 
-    private function setSerializedMessage($serializedMessage)
+    private function setSerializedMessage($serializedMessage): void
     {
         Assertion::nullOrString($serializedMessage);
 

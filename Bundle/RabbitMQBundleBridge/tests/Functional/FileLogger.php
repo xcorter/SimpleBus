@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\RabbitMQBundleBridge\Tests\Functional;
 
 use Psr\Log\AbstractLogger;
@@ -16,12 +18,12 @@ class FileLogger extends AbstractLogger
         $this->path = $path;
     }
 
-    public function clearFile()
+    public function clearFile(): void
     {
         file_put_contents($this->path, '');
     }
 
-    public function log($level, $message, array $context = [])
+    public function log($level, $message, array $context = []): void
     {
         $line = sprintf("%s %s %s\n", $level, $message, json_encode($context));
 

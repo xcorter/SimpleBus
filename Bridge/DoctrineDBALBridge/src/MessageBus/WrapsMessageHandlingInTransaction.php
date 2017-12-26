@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\DoctrineDBALBridge\MessageBus;
 
 use Doctrine\DBAL\Driver\Connection;
@@ -23,7 +25,7 @@ class WrapsMessageHandlingInTransaction implements MessageBusMiddleware
     /**
      * {@inheritdoc}
      */
-    public function handle($message, callable $next)
+    public function handle($message, callable $next): void
     {
         $this->connection->beginTransaction();
 

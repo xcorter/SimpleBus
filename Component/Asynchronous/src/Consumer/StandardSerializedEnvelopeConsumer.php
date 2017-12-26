@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleBus\Asynchronous\Consumer;
 
 use SimpleBus\Serialization\Envelope\Serializer\MessageInEnvelopeSerializer;
@@ -26,7 +28,7 @@ class StandardSerializedEnvelopeConsumer implements SerializedEnvelopeConsumer
         $this->messageBus = $messageBus;
     }
 
-    public function consume($serializedEnvelope)
+    public function consume($serializedEnvelope): void
     {
         $envelope = $this->messageInEnvelopeSerializer->unwrapAndDeserialize($serializedEnvelope);
 
