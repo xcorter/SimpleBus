@@ -20,7 +20,7 @@ class AddMiddlewareTags implements CompilerPassInterface
     private $addTagForMessageBusesOfTypes;
 
     /**
-     * @var integer
+     * @var int
      */
     private $middlewarePriority;
 

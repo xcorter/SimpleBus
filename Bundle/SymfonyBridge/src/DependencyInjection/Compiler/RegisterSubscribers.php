@@ -14,9 +14,9 @@ class RegisterSubscribers implements CompilerPassInterface
     private $keyAttribute;
 
     /**
-     * @param string  $serviceId            The service id of the MessageSubscriberCollection
-     * @param string  $tag                  The tag name of message subscriber services
-     * @param string  $keyAttribute         The name of the tag attribute that contains the name of the subscriber
+     * @param string $serviceId    The service id of the MessageSubscriberCollection
+     * @param string $tag          The tag name of message subscriber services
+     * @param string $keyAttribute The name of the tag attribute that contains the name of the subscriber
      */
     public function __construct($serviceId, $tag, $keyAttribute)
     {
@@ -39,7 +39,7 @@ class RegisterSubscribers implements CompilerPassInterface
 
         $definition = $container->findDefinition($this->serviceId);
 
-        $handlers = array();
+        $handlers = [];
 
         $this->collectServiceIds(
             $container,
@@ -51,7 +51,7 @@ class RegisterSubscribers implements CompilerPassInterface
                     // in `ServiceLocatorAwareCallableResolver`
                     $callable = [
                         'serviceId' => $serviceId,
-                        'method'    => $tagAttributes['method'],
+                        'method' => $tagAttributes['method'],
                     ];
                 } else {
                     $callable = $serviceId;

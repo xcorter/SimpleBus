@@ -23,7 +23,7 @@ class AdditionalPropertiesResolverPassTest extends TestCase
     protected function setUp()
     {
         $this->container = new ContainerBuilder();
-        $this->delegatingDefinition = new Definition('stdClass', array(array()));
+        $this->delegatingDefinition = new Definition('stdClass', [[]]);
         $this->container->setDefinition('simple_bus.rabbit_mq_bundle_bridge.delegating_additional_properties_resolver', $this->delegatingDefinition);
         $this->container->addCompilerPass(new AdditionalPropertiesResolverPass());
     }
@@ -52,7 +52,7 @@ class AdditionalPropertiesResolverPassTest extends TestCase
     private function createResolver($class, $priority)
     {
         $definition = new Definition($class);
-        $definition->addTag('simple_bus.additional_properties_resolver', array('priority' => $priority));
+        $definition->addTag('simple_bus.additional_properties_resolver', ['priority' => $priority]);
 
         $this->container->setDefinition($class, $definition);
 
@@ -62,7 +62,7 @@ class AdditionalPropertiesResolverPassTest extends TestCase
     private function resolverContainsResolvers($expectedResolverClasses)
     {
         $actualResolverClasses = [];
-        
+
         foreach ($this->delegatingDefinition->getArgument(0) as $argument) {
             if (Kernel::VERSION_ID >= 40000) {
                 $this->assertInstanceOf(
@@ -84,8 +84,14 @@ class AdditionalPropertiesResolverPassTest extends TestCase
     }
 }
 
-class Resolver1 {}
+class Resolver1
+{
+}
 
-class Resolver2 {}
+class Resolver2
+{
+}
 
-class Resolver3 {}
+class Resolver3
+{
+}

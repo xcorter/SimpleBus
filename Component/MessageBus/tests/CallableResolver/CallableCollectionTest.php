@@ -40,12 +40,12 @@ class CallableCollectionTest extends TestCase
             [
                 'message1' => [
                     $message1Callable1,
-                    $message1Callable2
+                    $message1Callable2,
                 ],
                 'message2' => [
                     function () {},
-                    function () {}
-                ]
+                    function () {},
+                ],
             ],
             $this->callableResolver
         );

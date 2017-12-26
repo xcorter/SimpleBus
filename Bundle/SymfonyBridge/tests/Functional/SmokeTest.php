@@ -136,7 +136,7 @@ class SmokeTest extends KernelTestCase
 
     /**
      * @test
-     * 
+     *
      * @group SymfonyBridgeProxyManagerDependency
      *
      * @expectedException        \LogicException
@@ -151,7 +151,6 @@ class SmokeTest extends KernelTestCase
     {
         $entityManager = $container->get('doctrine.orm.entity_manager');
         /** @var EntityManager $entityManager */
-
         $schemaTool = new SchemaTool($entityManager);
         $schemaTool->createSchema($entityManager->getMetadataFactory()->getAllMetadata());
     }

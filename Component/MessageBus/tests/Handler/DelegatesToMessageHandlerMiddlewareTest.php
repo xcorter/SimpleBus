@@ -36,8 +36,9 @@ class DelegatesToMessageHandlerMiddlewareTest extends TestCase
     }
 
     /**
-     * @param object $message
+     * @param object   $message
      * @param callable $resolvedMessageHandler
+     *
      * @return \PHPUnit_Framework_MockObject_MockObject|MessageHandlerResolver
      */
     private function mockMessageHandlerResolverShouldResolve($message, $resolvedMessageHandler)

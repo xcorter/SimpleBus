@@ -11,14 +11,14 @@ use SimpleBus\Message\Recorder\ContainsRecordedMessages;
 
 class CollectsEventsFromEntities implements EventSubscriber, ContainsRecordedMessages
 {
-    private $collectedEvents = array();
+    private $collectedEvents = [];
 
     public function getSubscribedEvents()
     {
-        return array(
+        return [
             Events::preFlush,
-            Events::postFlush
-        );
+            Events::postFlush,
+        ];
     }
 
     public function preFlush(PreFlushEventArgs $eventArgs)
@@ -26,7 +26,7 @@ class CollectsEventsFromEntities implements EventSubscriber, ContainsRecordedMes
         $em = $eventArgs->getEntityManager();
         $uow = $em->getUnitOfWork();
         foreach ($uow->getIdentityMap() as $entities) {
-            foreach ($entities as $entity){
+            foreach ($entities as $entity) {
                 $this->collectEventsFromEntity($entity);
             }
         }
@@ -37,7 +37,7 @@ class CollectsEventsFromEntities implements EventSubscriber, ContainsRecordedMes
 
     /**
      * We need to listen on postFlush for Lifecycle Events
-     * All Lifecycle callback events are triggered after the onFlush event
+     * All Lifecycle callback events are triggered after the onFlush event.
      *
      * @param PostFlushEventArgs $eventArgs
      */
@@ -46,7 +46,7 @@ class CollectsEventsFromEntities implements EventSubscriber, ContainsRecordedMes
         $em = $eventArgs->getEntityManager();
         $uow = $em->getUnitOfWork();
         foreach ($uow->getIdentityMap() as $entities) {
-            foreach ($entities as $entity){
+            foreach ($entities as $entity) {
                 $this->collectEventsFromEntity($entity);
             }
         }
@@ -59,13 +59,13 @@ class CollectsEventsFromEntities implements EventSubscriber, ContainsRecordedMes
 
     public function eraseMessages()
     {
-        $this->collectedEvents = array();
+        $this->collectedEvents = [];
     }
 
     private function collectEventsFromEntity($entity)
     {
         if ($entity instanceof ContainsRecordedMessages
-            && ( !$entity instanceof Proxy
+            && (!$entity instanceof Proxy
                 || ($entity instanceof Proxy && $entity->__isInitialized__)
             )
         ) {

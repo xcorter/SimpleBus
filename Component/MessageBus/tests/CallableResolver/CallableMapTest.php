@@ -41,7 +41,7 @@ class CallableMapTest extends TestCase
             [
                 'message1' => $message1Callable,
                 'message2' => function () {
-                }
+                },
             ],
             $this->callableResolver
         );

@@ -75,6 +75,7 @@ class PublishesPredefinedMessagesTest extends TestCase
     {
         return $this->createMock('SimpleBus\Asynchronous\Publisher\Publisher');
     }
+
     /**
      * @return \PHPUnit_Framework_MockObject_MockObject|MessageNameResolver
      */

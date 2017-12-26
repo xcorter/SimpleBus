@@ -21,7 +21,7 @@ class WrapsMessageHandlingInTransaction implements MessageBusMiddleware
 
     /**
      * @param ManagerRegistry $managerRegistry
-     * @param string $entityManagerName
+     * @param string          $entityManagerName
      */
     public function __construct(ManagerRegistry $managerRegistry, $entityManagerName)
     {
@@ -32,7 +32,7 @@ class WrapsMessageHandlingInTransaction implements MessageBusMiddleware
     public function handle($message, callable $next)
     {
         $entityManager = $this->managerRegistry->getManager($this->entityManagerName);
-        /** @var $entityManager EntityManager */
+        /* @var $entityManager EntityManager */
 
         try {
             $entityManager->transactional(

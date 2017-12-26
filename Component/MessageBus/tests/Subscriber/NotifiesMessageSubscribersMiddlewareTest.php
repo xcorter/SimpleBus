@@ -22,7 +22,7 @@ class NotifiesMessageSubscribersMiddlewareTest extends TestCase
 
         $messageSubscribers = [
             $messageSubscriber1,
-            $messageSubscriber2
+            $messageSubscriber2,
         ];
 
         $resolver = $this->mockMessageSubscribersResolver($message, $messageSubscribers);
@@ -49,7 +49,7 @@ class NotifiesMessageSubscribersMiddlewareTest extends TestCase
 
         $messageSubscribers = [
             $messageSubscriber1,
-            $messageSubscriber2
+            $messageSubscriber2,
         ];
 
         $resolver = $this->mockMessageSubscribersResolver($message, $messageSubscribers);
@@ -85,7 +85,8 @@ class NotifiesMessageSubscribersMiddlewareTest extends TestCase
 
     /**
      * @param object $message
-     * @param array $messageSubscribers
+     * @param array  $messageSubscribers
+     *
      * @return \PHPUnit_Framework_MockObject_MockObject|MessageSubscribersResolver
      */
     private function mockMessageSubscribersResolver($message, array $messageSubscribers)

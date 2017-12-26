@@ -27,7 +27,7 @@ class StandardMessageInEnvelopeSerializerTest extends TestCase
 
         $objectSerializer = $this->objectSerializerSerializes([
             [$message, $serializedMessage],
-            [$envelope->withSerializedMessage($serializedMessage), $serializedEnvelope]
+            [$envelope->withSerializedMessage($serializedMessage), $serializedEnvelope],
         ]);
 
         $messageSerializer = new StandardMessageInEnvelopeSerializer($envelopeFactory, $objectSerializer);
@@ -53,7 +53,7 @@ class StandardMessageInEnvelopeSerializerTest extends TestCase
 
         $objectSerializer = $this->mockObjectSerializerDeserializes([
             [$serializedEnvelope, $envelopeClass, $envelope],
-            [$serializedMessage, $messageClass, $message]
+            [$serializedMessage, $messageClass, $message],
         ]);
 
         $messageSerializer = new StandardMessageInEnvelopeSerializer($envelopeFactory, $objectSerializer);
@@ -101,7 +101,7 @@ class StandardMessageInEnvelopeSerializerTest extends TestCase
         $notAMessage = new \stdClass();
         $objectSerializer = $this->mockObjectSerializerDeserializes([
             [$serializedEnvelope, $envelopeClass, $envelope],
-            [$serializedMessage, $messageClass, $notAMessage]
+            [$serializedMessage, $messageClass, $notAMessage],
         ]);
 
         $messageSerializer = new StandardMessageInEnvelopeSerializer($envelopeFactory, $objectSerializer);
@@ -111,8 +111,9 @@ class StandardMessageInEnvelopeSerializerTest extends TestCase
     }
 
     /**
-     * @param object $message
+     * @param object   $message
      * @param Envelope $expectedEnvelope
+     *
      * @return \PHPUnit_Framework_MockObject_MockObject|EnvelopeFactory
      */
     private function envelopeFactoryCreatesEnvelope($message, Envelope $expectedEnvelope)
@@ -153,6 +154,7 @@ class StandardMessageInEnvelopeSerializerTest extends TestCase
 
     /**
      * @param $envelopeClass
+     *
      * @return \PHPUnit_Framework_MockObject_MockObject|EnvelopeFactory
      */
     private function envelopeFactoryForEnvelopeClass($envelopeClass)

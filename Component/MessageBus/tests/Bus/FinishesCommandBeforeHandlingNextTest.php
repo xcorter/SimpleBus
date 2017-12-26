@@ -8,7 +8,7 @@ use SimpleBus\Message\Bus\Middleware\MessageBusSupportingMiddleware;
 use SimpleBus\Message\Bus\Middleware\FinishesHandlingMessageBeforeHandlingNext;
 use SimpleBus\Message\Tests\Bus\Fixtures\StubMessageBusMiddleware;
 
-class FinishesMessageBeforeHandlingNextTest extends TestCase
+class FinishesCommandBeforeHandlingNextTest extends TestCase
 {
     /**
      * @test
@@ -45,7 +45,7 @@ class FinishesMessageBeforeHandlingNextTest extends TestCase
                 'start handling original message',
                 'finished handling original message',
                 'start handling new message',
-                'finished handling new message'
+                'finished handling new message',
             ],
             $whatHappened
         );

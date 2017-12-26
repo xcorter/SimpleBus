@@ -13,6 +13,5 @@ final class AutoEventSubscriberUsingInvoke
 
     public function randomPublicMethod($value)
     {
-
     }
 }

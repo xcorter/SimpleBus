@@ -28,13 +28,14 @@ class MessageLogger
             return;
         }
 
-        $this->numMessages++;
+        ++$this->numMessages;
         if ($this->numMessages > $this->logLimit) {
-            if ($this->limitAction == self::LIMIT_ACTION_THROW_EXCEPTION) {
-                throw new \RuntimeException("Message log is full");
+            if (self::LIMIT_ACTION_THROW_EXCEPTION == $this->limitAction) {
+                throw new \RuntimeException('Message log is full');
             } elseif (self::LIMIT_ACTION_DISCARD_AND_STOP) {
                 $this->messages = [];
                 $this->enabled = false;
+
                 return;
             }
         }

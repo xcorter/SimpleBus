@@ -23,20 +23,20 @@ class MessageBusDataCollector extends DataCollector
 
     public function collect(Request $request, Response $response, \Exception $exception = null)
     {
-        $messages = array_map(function($logEntry) {
+        $messages = array_map(function ($logEntry) {
             $message = $logEntry->getMessage();
 
             return [
                 'bus' => $logEntry->getBusName(),
-                'messageClass' => $message instanceOf NamedMessage ? $message->messageName() : get_class($message),
-                'timestamp' => $logEntry->getTimestamp()
+                'messageClass' => $message instanceof NamedMessage ? $message->messageName() : get_class($message),
+                'timestamp' => $logEntry->getTimestamp(),
             ];
         }, $this->logger->getLogs());
 
         $buses = [];
         foreach ($this->busRegistry->all() as $name => $bus) {
             $busData = [
-                'name' => $name
+                'name' => $name,
             ];
 
             if ($bus instanceof MessageBusSupportingMiddleware) {
@@ -46,10 +46,10 @@ class MessageBusDataCollector extends DataCollector
             $buses[] = $busData;
         }
 
-        $this->data = array(
+        $this->data = [
             'messages' => $messages,
             'buses' => $buses,
-        );
+        ];
     }
 
     public function getMessages()

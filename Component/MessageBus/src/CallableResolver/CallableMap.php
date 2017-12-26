@@ -26,6 +26,7 @@ class CallableMap
 
     /**
      * @param string $name
+     *
      * @return callable
      */
     public function get($name)

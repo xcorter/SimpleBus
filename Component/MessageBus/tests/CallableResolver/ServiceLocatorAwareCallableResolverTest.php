@@ -161,7 +161,7 @@ class ServiceLocatorAwareCallableResolverTest extends TestCase
 
         $callable = [
             'serviceId' => 'SimpleBus\Message\Tests\CallableResolver\Fixtures\SubscriberWithCustomNotify',
-            'method'    => 'customNotifyMethod',
+            'method' => 'customNotifyMethod',
         ];
         $this->assertSame([$subscriber, 'customNotifyMethod'], $this->resolver->resolve($callable));
     }

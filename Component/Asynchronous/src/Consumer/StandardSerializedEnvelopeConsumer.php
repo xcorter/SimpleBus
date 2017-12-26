@@ -6,7 +6,7 @@ use SimpleBus\Serialization\Envelope\Serializer\MessageInEnvelopeSerializer;
 use SimpleBus\Message\Bus\MessageBus;
 
 /**
- * Use this consumer to easily implement an asynchronous message consumer
+ * Use this consumer to easily implement an asynchronous message consumer.
  */
 class StandardSerializedEnvelopeConsumer implements SerializedEnvelopeConsumer
 {

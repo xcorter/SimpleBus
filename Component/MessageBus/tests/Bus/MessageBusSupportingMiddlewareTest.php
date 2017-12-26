@@ -17,7 +17,7 @@ class MessageBusSupportingMiddlewareTest extends TestCase
         $stackedMessageBuses = [
             $this->mockStackedMessageBus($actualMessageBusesCalled),
             $this->mockStackedMessageBus($actualMessageBusesCalled),
-            $this->mockStackedMessageBus($actualMessageBusesCalled)
+            $this->mockStackedMessageBus($actualMessageBusesCalled),
         ];
 
         $message = $this->dummyMessage();
@@ -85,7 +85,7 @@ class MessageBusSupportingMiddlewareTest extends TestCase
     {
         $stackedMessageBuses = [
             $this->createMock('SimpleBus\Message\Bus\Middleware\MessageBusMiddleware'),
-            $this->createMock('SimpleBus\Message\Bus\Middleware\MessageBusMiddleware')
+            $this->createMock('SimpleBus\Message\Bus\Middleware\MessageBusMiddleware'),
         ];
 
         $messageBusStack = new MessageBusSupportingMiddleware($stackedMessageBuses);

@@ -31,8 +31,8 @@ class SimpleBusRabbitMQBundleBridgeExtension extends ConfigurableExtension imple
                 'simple_bus_asynchronous',
                 [
                     'commands' => [
-                        'publisher_service_id' => 'simple_bus.rabbit_mq_bundle_bridge.command_publisher'
-                    ]
+                        'publisher_service_id' => 'simple_bus.rabbit_mq_bundle_bridge.command_publisher',
+                    ],
                 ]
             );
         }
@@ -42,8 +42,8 @@ class SimpleBusRabbitMQBundleBridgeExtension extends ConfigurableExtension imple
                 'simple_bus_asynchronous',
                 [
                     'events' => [
-                        'publisher_service_id' => 'simple_bus.rabbit_mq_bundle_bridge.event_publisher'
-                    ]
+                        'publisher_service_id' => 'simple_bus.rabbit_mq_bundle_bridge.event_publisher',
+                    ],
                 ]
             );
         }
@@ -56,16 +56,16 @@ class SimpleBusRabbitMQBundleBridgeExtension extends ConfigurableExtension imple
 
     protected function loadInternal(array $mergedConfig, ContainerBuilder $container)
     {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
         foreach (['command' => 'commands', 'event' => 'events'] as $messageType => $configurationKey) {
             if (!$mergedConfig[$configurationKey]['enabled']) {
                 continue;
             }
 
-            $loader->load($configurationKey . '.yml');
+            $loader->load($configurationKey.'.yml');
             $container->setAlias(
-                'simple_bus.rabbit_mq_bundle_bridge.' . $messageType . '_producer',
+                'simple_bus.rabbit_mq_bundle_bridge.'.$messageType.'_producer',
                 $mergedConfig[$configurationKey]['producer_service_id']
             );
         }

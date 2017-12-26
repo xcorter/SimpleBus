@@ -5,9 +5,9 @@ namespace SimpleBus\Serialization;
 class NativeObjectSerializer implements ObjectSerializer
 {
     /**
-     * Serialize the given object using the native `serialize()` function
+     * Serialize the given object using the native `serialize()` function.
      *
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function serialize($object)
     {
@@ -15,9 +15,9 @@ class NativeObjectSerializer implements ObjectSerializer
     }
 
     /**
-     * Deserialize the given object using the native `unserialize()` function
+     * Deserialize the given object using the native `unserialize()` function.
      *
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function deserialize($serializedObject, $type)
     {

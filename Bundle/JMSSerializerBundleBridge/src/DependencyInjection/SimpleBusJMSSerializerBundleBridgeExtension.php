@@ -13,7 +13,7 @@ class SimpleBusJMSSerializerBundleBridgeExtension extends Extension implements P
 {
     public function load(array $config, ContainerBuilder $container)
     {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
     }
 
@@ -29,17 +29,17 @@ class SimpleBusJMSSerializerBundleBridgeExtension extends Extension implements P
                     'directories' => [
                         'AsynchronousEvents' => [
                             'path' => SerializerMetadata::directory(),
-                            'namespace_prefix' => SerializerMetadata::namespacePrefix()
-                        ]
-                    ]
-                ]
+                            'namespace_prefix' => SerializerMetadata::namespacePrefix(),
+                        ],
+                    ],
+                ],
             ]
         );
 
         $container->prependExtensionConfig(
             'simple_bus_asynchronous',
             [
-                'object_serializer_service_id' => 'simple_bus.jms_serializer.object_serializer'
+                'object_serializer_service_id' => 'simple_bus.jms_serializer.object_serializer',
             ]
         );
     }

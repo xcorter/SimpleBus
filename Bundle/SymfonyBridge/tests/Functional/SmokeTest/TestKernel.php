@@ -18,18 +18,18 @@ class TestKernel extends Kernel
     {
         parent::__construct($environment, $debug);
 
-        $this->tempDir = sys_get_temp_dir() . '/simplebus-symfony-bridge';
+        $this->tempDir = sys_get_temp_dir().'/simplebus-symfony-bridge';
     }
 
     public function registerBundles()
     {
-        return array(
+        return [
             new DoctrineBundle(),
             new SimpleBusCommandBusBundle(),
             new SimpleBusEventBusBundle(),
             new DoctrineOrmBridgeBundle(),
-            new MonologBundle()
-        );
+            new MonologBundle(),
+        ];
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
@@ -39,16 +39,16 @@ class TestKernel extends Kernel
 
     public function getCacheDir()
     {
-        return $this->tempDir . '/cache';
+        return $this->tempDir.'/cache';
     }
 
     public function getLogDir()
     {
-        return $this->tempDir . '/logs';
+        return $this->tempDir.'/logs';
     }
 
     protected function getContainerClass()
     {
-        return parent::getContainerClass() . sha1(__NAMESPACE__);
+        return parent::getContainerClass().sha1(__NAMESPACE__);
     }
 }

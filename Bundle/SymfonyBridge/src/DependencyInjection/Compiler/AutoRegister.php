@@ -54,7 +54,7 @@ final class AutoRegister implements CompilerPassInterface
                     $parameters = $method->getParameters();
 
                     // if no param or optional param, skip
-                    if (count($parameters) !== 1 || $parameters[0]->isOptional()) {
+                    if (1 !== count($parameters) || $parameters[0]->isOptional()) {
                         continue;
                     }
 
@@ -63,11 +63,11 @@ final class AutoRegister implements CompilerPassInterface
 
                     $tagAttributes[] = [
                         $this->tagAttribute => $handles,
-                        'method' => $method->getName()
+                        'method' => $method->getName(),
                     ];
                 }
 
-                if (count($tags) !== 0) {
+                if (0 !== count($tags)) {
                     // auto handle
                     $definition->clearTag($this->tagName);
 

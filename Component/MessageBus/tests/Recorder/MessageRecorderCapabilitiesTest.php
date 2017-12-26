@@ -5,7 +5,7 @@ namespace SimpleBus\Message\Tests\Recorder;
 use PHPUnit\Framework\TestCase;
 use SimpleBus\Message\Tests\Recorder\Fixtures\PrivateMessageRecorderCapabilitiesStub;
 
-class MessageRecorderCapabilitiesStubTest extends TestCase
+class MessageRecorderCapabilitiesTest extends TestCase
 {
     /**
      * @test

@@ -27,9 +27,9 @@ class StandardMessageInEnvelopeSerializer implements MessageInEnvelopeSerializer
     }
 
     /**
-     * Serialize a Message by wrapping it in an Envelope and serializing the envelope
+     * Serialize a Message by wrapping it in an Envelope and serializing the envelope.
      *
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function wrapAndSerialize($message)
     {
@@ -41,9 +41,9 @@ class StandardMessageInEnvelopeSerializer implements MessageInEnvelopeSerializer
     }
 
     /**
-     * Deserialize a Message that was wrapped in an Envelope
+     * Deserialize a Message that was wrapped in an Envelope.
      *
-     * @{inheritdoc}
+     * {@inheritdoc}
      */
     public function unwrapAndDeserialize($serializedEnvelope)
     {
@@ -55,9 +55,10 @@ class StandardMessageInEnvelopeSerializer implements MessageInEnvelopeSerializer
     }
 
     /**
-     * Deserialize the message Envelope
+     * Deserialize the message Envelope.
      *
      * @param string $serializedEnvelope
+     *
      * @return Envelope
      */
     private function deserializeEnvelope($serializedEnvelope)
@@ -81,10 +82,11 @@ class StandardMessageInEnvelopeSerializer implements MessageInEnvelopeSerializer
     }
 
     /**
-     * Deserialize the Message
+     * Deserialize the Message.
      *
      * @param string $serializedMessage
      * @param string $messageClass
+     *
      * @return object Of type $messageClass
      */
     private function deserializeMessage($serializedMessage, $messageClass)

@@ -58,7 +58,7 @@ class ConfigureMiddlewaresTest extends TestCase
     private function createBusDefinition($class, $priority)
     {
         $definition = new Definition($class);
-        $definition->addTag($this->middlewareTag, array('priority' => $priority));
+        $definition->addTag($this->middlewareTag, ['priority' => $priority]);
 
         $this->container->setDefinition($class, $definition);
 

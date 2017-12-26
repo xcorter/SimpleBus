@@ -21,7 +21,7 @@ class FileLogger extends AbstractLogger
         file_put_contents($this->path, '');
     }
 
-    public function log($level, $message, array $context = array())
+    public function log($level, $message, array $context = [])
     {
         $line = sprintf("%s %s %s\n", $level, $message, json_encode($context));
 
@@ -31,7 +31,8 @@ class FileLogger extends AbstractLogger
     public function fileContains($text)
     {
         $fileContents = $this->fileContents();
-        return strpos($fileContents, $text) !== false;
+
+        return false !== strpos($fileContents, $text);
     }
 
     public function fileContents()
